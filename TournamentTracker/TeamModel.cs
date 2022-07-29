@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TournamentTracker
 {
+    /// <summary>
+    /// Represents a Team.
+    /// </summary>
     public class TeamModel
     {
         /// <summary>

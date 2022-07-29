@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace TournamentTracker
 {
+    /// <summary>
+    /// Represents the Entries of Matchup
+    /// </summary>
     public class MatchupEntryModel
     {
         /// <summary>
