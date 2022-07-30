@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TournamentTracker.Interfaces;
 using TournamentTracker.DataAccess;
-
+using System.Configuration;
 
 namespace TournamentTracker
 {
@@ -15,29 +15,39 @@ namespace TournamentTracker
         /// List of Database Connections.
         /// Stores Which type of Connections you want to implement.
         /// </summary>
-        public static List<IDataConnection> Connections { get; private set; } = new List<IDataConnection>();
+        public static IDataConnection Connections { get; private set; }
 
 
         /// <summary>
         /// Initializing the Database Connection.
         /// </summary>
-        /// <param name="database">True if you want to use database</param>
-        /// <param name="textFiles">True if you want to use text file</param>
-        public static void InitializeConnections(bool database, bool textFiles)
+        /// <param name="db">Choose from SQL or TEXTFILE enum</param>
+        public static void InitializeConnections(DatabaseType db)
         {
-            if (database)
+            switch (db)
             {
-                // TODO: Set up the SQL Connector Properly.
-                SqlConnector sql = new SqlConnector();
-                Connections.Add(sql);
-            }
+                case DatabaseType.SQL:
 
-            if (textFiles)
-            {
-                // TODO: Create the Text Connection.
-                TextConnector text = new TextConnector();
-                Connections.Add(text);
+                    // TODO: Set up the SQL Connector Properly.
+                    SqlConnector sql = new SqlConnector();
+                    Connections = sql;
+                    break;
+
+                case DatabaseType.TEXTFILE:
+
+                    // TODO: Create the Text Connection.
+                    TextConnector text = new TextConnector();
+                    Connections = text;
+                    break;
+
+                default:
+                    break;
             }
+        }
+
+        public static string ConnString(string name)
+        {
+            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
     }
 }

@@ -17,16 +17,13 @@ namespace TournamentTrackerUI
             if (ValidateForm())
             {
                 TournamentTracker.Models.PrizeModel model = new TournamentTracker.Models.PrizeModel(
-                    placeNameValue.Text,
                     placeNumberValue.Text,
+                    placeNameValue.Text,
                     prizeAmountValue.Text,
                     prizePercentageValue.Text
                 );
 
-                foreach (IDataConnection db in GlobalConfig.Connections)
-                {
-                    db.CreatePrize(model);
-                }
+                GlobalConfig.Connections.CreatePrize(model);
 
                 MessageBox.Show("Prize Saved Successfully!");
 

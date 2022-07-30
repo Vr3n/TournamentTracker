@@ -20,8 +20,8 @@
             decimal prizeAmountValue = 0;
             decimal.TryParse(prizeAmount, out prizeAmountValue);
 
-            double prizePercentageValue = 0;
-            double.TryParse(prizePercentage, out prizePercentageValue);
+            decimal prizePercentageValue = 0;
+            decimal.TryParse(prizePercentage, out prizePercentageValue);
 
 
             PlaceNumber = placeNumberValue;
@@ -60,6 +60,6 @@
         /// <summary>
         /// Prize in % of the Rank in which the team finishes in.
         /// </summary>
-        public double PrizePercentage { get; set; }
+        public decimal PrizePercentage { get; set; }
     }
 }
