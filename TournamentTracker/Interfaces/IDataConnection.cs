@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TournamentTracker.Interfaces
+﻿namespace TournamentTracker.Interfaces
 {
+    /// <summary>
+    /// Interface for DataConnections Creating and Saving the Models / Data.
+    /// </summary>
     public interface IDataConnection
     {
-        PrizeModel CreatePrize(PrizeModel model);
+
+        /// <summary>
+        /// Save the Prize Model
+        /// </summary>
+        /// <param name="model">Information of the prize model.</param>
+        /// <returns>Saved Prize model with its Id.</returns>
+        Models.PrizeModel CreatePrize(Models.PrizeModel model);
     }
 }

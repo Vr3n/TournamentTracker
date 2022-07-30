@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TournamentTracker.Interfaces;
+﻿using TournamentTracker.Interfaces;
 
-namespace TournamentTracker
+namespace TournamentTracker.DataAccess
 {
     internal class SqlConnector : IDataConnection
     {
@@ -16,7 +11,7 @@ namespace TournamentTracker
         /// </summary>
         /// <param name="model">The Prize Information</param>
         /// <returns>The prize information, including the unique identifier.</returns>
-        public PrizeModel CreatePrize(PrizeModel model)
+        public Models.PrizeModel CreatePrize(Models.PrizeModel model)
         {
             model.Id = 1;
             return model;

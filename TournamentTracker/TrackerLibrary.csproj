@@ -47,10 +47,10 @@
     <Compile Include="Models\MatchupModel.cs" />
     <Compile Include="Models\PersonModel.cs" />
     <Compile Include="Models\PrizeModel.cs" />
-    <Compile Include="Models\SqlConnector.cs" />
+    <Compile Include="DataAccess\SqlConnector.cs" />
     <Compile Include="Models\TeamModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\TextConnection.cs" />
+    <Compile Include="DataAccess\TextConnector.cs" />
     <Compile Include="Models\TournamentModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

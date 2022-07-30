@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TournamentTracker;
 using TournamentTracker.Interfaces;
@@ -23,7 +16,7 @@ namespace TournamentTrackerUI
         {
             if (ValidateForm())
             {
-                PrizeModel model = new PrizeModel(
+                TournamentTracker.Models.PrizeModel model = new TournamentTracker.Models.PrizeModel(
                     placeNameValue.Text,
                     placeNumberValue.Text,
                     prizeAmountValue.Text,
@@ -41,9 +34,10 @@ namespace TournamentTrackerUI
                 placeNameValue.Text = "";
                 placeNumberValue.Text = "";
                 prizeAmountValue.Text = "0";
-                prizePercentageValue.Text= "0";
+                prizePercentageValue.Text = "0";
 
-            } else
+            }
+            else
             {
                 MessageBox.Show("This form has invalid information. Please check it and try again.");
             }

@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TournamentTracker
+﻿namespace TournamentTracker.Models
 {
     /// <summary>
     /// Represents Prize for the Rankings.
     /// </summary>
     public class PrizeModel
     {
-
+        /// <summary>
+        /// An override constructor which Sanitizes the data.
+        /// </summary>
+        /// <param name="placeNumber">Rank of Team.</param>
+        /// <param name="placeName">Specific Name of the Rank.</param>
+        /// <param name="prizeAmount">Amount of Prize the Rank will get.</param>
+        /// <param name="prizePercentage">Amount of Percentage the Rank will get.</param>
         public PrizeModel(string placeNumber, string placeName, string prizeAmount, string prizePercentage)
         {
             int placeNumberValue = 0;
