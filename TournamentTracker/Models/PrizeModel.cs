@@ -11,6 +11,37 @@ namespace TournamentTracker
     /// </summary>
     public class PrizeModel
     {
+
+        public PrizeModel(string placeNumber, string placeName, string prizeAmount, string prizePercentage)
+        {
+            int placeNumberValue = 0;
+            int.TryParse(placeNumber, out placeNumberValue);
+
+            decimal prizeAmountValue = 0;
+            decimal.TryParse(prizeAmount, out prizeAmountValue);
+
+            double prizePercentageValue = 0;
+            double.TryParse(prizePercentage, out prizePercentageValue);
+
+
+            PlaceNumber = placeNumberValue;
+            PlaceName = placeName;
+            PrizeAmount = prizeAmountValue;
+            PrizePercentage = prizePercentageValue;
+        }
+
+        public PrizeModel()
+        {
+
+        }
+
+
+
+        /// <summary>
+        /// Unique Identifier for the price.
+        /// </summary>
+        public int Id { get; set; }
+
         /// <summary>
         /// Represents the Rank of the team.
         /// </summary>

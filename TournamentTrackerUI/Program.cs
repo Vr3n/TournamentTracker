@@ -16,7 +16,12 @@ namespace TournamentTrackerUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TournamentDashboardForm());
+
+            // Initialize The database connections.
+            TournamentTracker.GlobalConfig.InitializeConnections(true, true);
+
+            Application.Run(new CreatePrizeForm());
+            // Application.Run(new TournamentDashboardForm());
         }
     }
 }
