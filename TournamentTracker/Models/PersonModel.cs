@@ -5,6 +5,13 @@
     /// </summary>
     public class PersonModel
     {
+
+
+        /// <summary>
+        /// Unique Identifier for the Person.
+        /// </summary>
+        public int Id { get; set; }
+
         /// <summary>
         /// First name of the person / team member.
         /// </summary>

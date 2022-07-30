@@ -66,6 +66,32 @@ namespace TournamentTracker.DataAccess.TextConnHelper
             }
             return output;
         }
+
+        /// <summary>
+        /// Converting The Loaded Data to Person Models String.
+        /// </summary>
+        /// <param name="lines">The Lines of Loaded Text File</param>
+        /// <returns>List of Data (Person Model)</returns>
+        public static List<Models.PersonModel> ConvertToPersonModels(this List<string> lines)
+        {
+            List<Models.PersonModel> output = new List<Models.PersonModel>();
+
+            foreach (string line in lines)
+            {
+                string[] cols = line.Split(',');
+
+                Models.PersonModel p = new Models.PersonModel();
+
+                p.Id = int.Parse(cols[0]);
+                p.FirstName = cols[1];
+                p.LastName = cols[2];
+                p.EmailAddress = cols[3];
+                p.CellPhoneNumber = cols[4];
+
+                output.Add(p);
+            }
+            return output;
+        }
         
         /// <summary>
         /// Save Data To Prize File.
@@ -80,6 +106,24 @@ namespace TournamentTracker.DataAccess.TextConnHelper
             {
                 lines.Add($"{prize.Id},{prize.PlaceNumber},{prize.PlaceName},{prize.PrizeAmount},{prize.PrizePercentage}");
 
+            }
+
+            File.WriteAllLines(fileName.FullFilePath(), lines);
+
+        }
+
+        /// <summary>
+        /// Save Data To Person File.
+        /// </summary>
+        /// <param name="models">Data of the Person Model.</param>
+        /// <param name="fileName">Name of the File to save Data of Person Model</param>
+        public static void SaveToPersonFile(this List<Models.PersonModel> models, string fileName)
+        {
+            List<string> lines = new List<string>();
+
+            foreach (Models.PersonModel prize in models)
+            {
+                lines.Add($"{prize.Id},{prize.FirstName},{prize.LastName},{prize.EmailAddress},{prize.CellPhoneNumber}");
             }
 
             File.WriteAllLines(fileName.FullFilePath(), lines);

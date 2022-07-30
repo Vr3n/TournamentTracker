@@ -10,6 +10,7 @@ namespace TournamentTracker.DataAccess
 
         // Constant File Name of the PrizeModel.
         private const string PrizesFile = "PrizeModels.csv";
+        private const string PersonsFile = "PersonsModels.csv";
 
 
         /// <summary>
@@ -36,5 +37,26 @@ namespace TournamentTracker.DataAccess
 
             return model;
         }
+
+        public Models.PersonModel CreatePerson(Models.PersonModel model)
+        {
+            List<Models.PersonModel> persons = PrizesFile.FullFilePath().LoadFile().ConvertToPersonModels();
+
+            int currentId = 1;
+
+            if (persons.Count > 0)
+            {
+                currentId = persons.OrderByDescending(x => x.Id).First().Id + 1;
+            }
+
+            model.Id = currentId;
+
+            persons.Add(model);
+
+            persons.SaveToPersonFile(PersonsFile);
+
+            return model;
+        }
+
     }
 }

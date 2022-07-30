@@ -12,5 +12,6 @@
         /// <param name="model">Information of the prize model.</param>
         /// <returns>Saved Prize model with its Id.</returns>
         Models.PrizeModel CreatePrize(Models.PrizeModel model);
+        Models.PersonModel CreatePerson(Models.PersonModel model);
     }
 }
