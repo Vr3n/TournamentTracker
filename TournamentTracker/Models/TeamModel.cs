@@ -7,6 +7,12 @@ namespace TournamentTracker.Models
     /// </summary>
     public class TeamModel
     {
+
+        /// <summary>
+        /// Represents Unique Identity of Team.
+        /// </summary>
+        public int Id { get; set; }
+
         /// <summary>
         /// List of Team members present in the Team.
         /// </summary>

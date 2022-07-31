@@ -6,7 +6,6 @@
     public class PersonModel
     {
 
-
         /// <summary>
         /// Unique Identifier for the Person.
         /// </summary>
@@ -31,5 +30,14 @@
         /// Phone Number of the person / team member.
         /// </summary>
         public string CellPhoneNumber { get; set; }
+
+
+        public string FullName
+        {
+            get
+            {
+                return $"{FirstName} {LastName}";
+            }
+        }
     }
 }

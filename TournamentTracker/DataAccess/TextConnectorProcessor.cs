@@ -92,7 +92,35 @@ namespace TournamentTracker.DataAccess.TextConnHelper
             }
             return output;
         }
-        
+
+        public static List<Models.TeamModel> ConvertToTeamModels(this List<string> lines, string peopleFileName)
+        {
+            // List of ids are seperated by the pipe.
+            List<Models.TeamModel> output = new List<Models.TeamModel>();
+            List<Models.PersonModel> persons = peopleFileName.FullFilePath().LoadFile().ConvertToPersonModels();
+
+            foreach (string line in lines)
+            {
+
+                string[] cols = line.Split(',');
+
+                Models.TeamModel team = new Models.TeamModel();
+                team.Id = int.Parse(cols[0]);
+                team.TeamName = cols[1];
+
+                string[] personIds = cols[2].Split('|');
+
+                foreach (string id in personIds)
+                {
+                    team.TeamMembers.Add(
+                        persons.Where(x => x.Id == int.Parse(id)).First()
+                    );
+                }
+
+            }
+            return output;
+        }
+
         /// <summary>
         /// Save Data To Prize File.
         /// </summary>
@@ -128,6 +156,50 @@ namespace TournamentTracker.DataAccess.TextConnHelper
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
 
+        }
+
+        /// <summary>
+        /// Save Data To Teams File.
+        /// </summary>
+        /// <param name="models">Data of the Team Model.</param>
+        /// <param name="fileName">Name of the File to save Data of Team Model</param>
+        public static void SaveToTeamFile(this List<Models.TeamModel> models, string fileName)
+        {
+            List<string> lines = new List<string>();
+
+            foreach (Models.TeamModel team in models)
+            {
+                lines.Add($"{team.Id},{team.TeamName},{ConvertPeopleListToString(team.TeamMembers)}");
+            }
+
+            File.WriteAllLines(fileName.FullFilePath(), lines);
+        }
+
+
+        /// <summary>
+        /// Converts List of People to String.
+        /// in format of People1.id|People2.id|
+        /// </summary>
+        /// <param name="people">List of People</param>
+        /// <returns>string of people ids seperated with pipe ("|")</returns>
+        private static string ConvertPeopleListToString (List<Models.PersonModel> people)
+        {
+            string output = "";
+
+            if (people.Count == 0)
+            {
+                return "";
+            }
+
+            foreach (Models.PersonModel person in people)
+            {
+                output += $"{person.Id}|";
+
+            }
+
+            output = output.Substring(0, output.Length - 1);
+
+            return output;
         }
 
     }
